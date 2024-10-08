@@ -1,11 +1,7 @@
-import resList from "../utils/mockData";
-import mockData from "../utils/mockData";
 import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
-   // const {resData} = props;
-   // {console.log(props.resdata.data)};
-   // {console.log(props.resdata)}
+   // {console.log(props)}
 
    //destructuring on fly
    const {cloudinaryImageId, name, avgRating, cuisines, costForTwo, deliveryTime} = props?.resdata;
@@ -18,7 +14,6 @@ const RestaurantCard = (props) => {
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
       />
-      <h3>{cloudinaryImageId}</h3>
       <h3>{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
