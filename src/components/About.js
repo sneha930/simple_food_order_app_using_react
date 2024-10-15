@@ -17,17 +17,17 @@ class About extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("parent constructor");
+    // console.log("parent constructor");
   }
 
   componentDidMount() {
-    console.log("parent component did mount");
+    // console.log("parent component did mount");
   }
 
 
   render() {
 
-    console.log("parent render");
+    // console.log("parent render");
 
     return (
       <div>
@@ -35,10 +35,6 @@ class About extends React.Component {
         <h2>This is about page</h2>
         <User name={"sneha from function"} />
         <UserClass name={"first"} location={"Pune from class"} />
-        
-        {/* <UserClass name={"first"} location={"Pune from class"}/>
-        <UserClass name={"second"} location={"Dehradun from class"}/>
-        <UserClass name={"third"} location={"Pune"}/> */}
       </div>
     )
   }

@@ -1,9 +1,23 @@
-import {useState } from "react";
+import {useEffect, useState } from "react";
 
 const User = (props) => {
 
    const [count] = useState(0);
    const [count2] = useState(0);
+
+   useEffect(() => {
+      const timer = setInterval(() => {console.log("Hello")}, 1000)
+
+      console.log("useEffect");
+
+      // this function is called when you are unmounting it
+      return () => {
+         console.log("useEffect return");
+         clearInterval(timer);
+      }
+   }, [])
+
+   console.log("render");
 
    return (
       <div className="user-card">
