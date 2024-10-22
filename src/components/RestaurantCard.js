@@ -1,10 +1,14 @@
 import { CDN_URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const RestaurantCard = (props) => {
    // {console.log(props)}
 
    //destructuring on fly
    const {cloudinaryImageId, name, avgRating, cuisines, costForTwo, deliveryTime} = props?.resdata;
+
+   const {loggedInUser} = useContext(UserContext);
 
    return (   <div className="res-card m-4 p-4 w-[250px] h-full rounded-lg bg-gr relative z-0 rounded-lg scale-110 transition-all duration-300 hover:scale-100 ">
       
@@ -18,6 +22,7 @@ const RestaurantCard = (props) => {
       <h4>{avgRating} stars</h4>
       <h4>₹{costForTwo / 100} FOR TWO</h4>
       <h4>{deliveryTime} minutes</h4>
+      <h4>{loggedInUser}</h4>
 
       </div>
    )

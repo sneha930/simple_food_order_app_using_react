@@ -16,9 +16,10 @@
  */
 
 import { LOGO_URL } from "../utils/constants";
-import {useState, useEffect} from "react";
+import {useState, useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
 
@@ -26,6 +27,9 @@ const Header = () => {
    console.log("Header render");
 
    const onlineStatus = useOnlineStatus();
+
+   const {loggedInUser} = useContext(UserContext);
+   console.log(loggedInUser);
 
    useEffect(() => {
       console.log("useEffect called from header");
@@ -45,6 +49,7 @@ const Header = () => {
                <li className="px-3 hover:text-orange-600"><Link to="/grocery">Grocery</Link></li>
                <li className="px-3 hover:text-orange-600">Cart</li>
                <button className="px-3 hover:text-orange-600" onClick={() => {btnNameReact == "Login" ?setBtnNameReact("Logout") : setBtnNameReact("Login")}}>{btnNameReact}</button>
+               <li className="px-3 hover:text-orange-600 font-bold">{loggedInUser}</li>
             </ul>
             {console.log("sdf")}
          </div>

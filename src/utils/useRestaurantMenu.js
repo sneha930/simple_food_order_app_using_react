@@ -12,10 +12,11 @@ const useRestaurantMenu = (resId) => {
    const fetchData = async() => {
       const data = await fetch(MENU_API+resId+"&catalog_qa=undefined&submitAction=ENTER");
       const json = await data.json();
-      console.log(json?.data?.cards[0]?.card?.card?.text);
-      console.log(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card?.itemCards);
+      console.log(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR);
 
-      setResInfo(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card?.itemCards);
+      // console.log(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card?.itemCards);
+
+      setResInfo(json);
       
    };
 

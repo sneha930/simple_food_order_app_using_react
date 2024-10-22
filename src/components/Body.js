@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
    const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -11,7 +12,7 @@ const Body = () => {
    const [searchText, setSearchText] = useState("");
 
    // with every searchtext key press(state changes) body getting rendered each time
-   // console.log("body rendered");
+   console.log("body rendered", listOfRestaurants);
 
    useEffect(() => {
       // console.log("useEffect called");
@@ -31,6 +32,8 @@ const Body = () => {
 
    const onlineStatus = useOnlineStatus();
    if(onlineStatus === false) return <h1>Looks like you are Offline, Please check your internet connection</h1>
+
+   const {setUserName, loggedInUser} = useContext(UserContext);
 
    //conditional rendering
    return listOfRestaurants.length === 0 ? <Shimmer /> : (
@@ -52,11 +55,16 @@ const Body = () => {
             </div>
 
             <div className="search p-4 m-4 flex items-center">
-            <button className="bg-orange-600 text-white px-4 py-2 font-semibold hover:bg-orange-700 text-white rounded-md active:bg-orange-800" onClick = {() => {
+            <button className="bg-orange-600  px-4 py-2 font-semibold hover:bg-orange-700 text-white rounded-md active:bg-orange-800" onClick = {() => {
                const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4)
                setListOfRestaurants(filteredList);
             }}
             >Top Rated Restaurants</button>
+            </div>
+
+            <div className="p-4 m-4 flex items-center">
+               <label className="px-2">UserName:</label>
+               <input className="p-1 border border-orange-300 rounded-lg focus:outline-none text-gray-700" value={loggedInUser} onChange={(e) => setUserName(e.target.value)} />
             </div>
          </div>
 
